@@ -21,9 +21,14 @@ if ! [ -e $1 ]; then
     exit 1
 fi
 
-OUTPUT_FILE=${1%.*}.out
+INCLUDE_DIR=$PWD/../include
 OUTPUT_DIR=$PWD/../bin
-gcc -DONLINE_JUDGE  -o2 -w -fmax-errors=3 -std=c11 $1 -lm -o $OUTPUT_FILE
+OUTPUT_FILE=${1%.*}.out
+if [ -e $INCLUDE_DIR ]; then
+    gcc -DONLINE_JUDGE -o2 -w -fmax-errors=3 -std=c11 $1 -lm -o $OUTPUT_FILE -I $INCLUDE_DIR
+else
+    gcc -DONLINE_JUDGE -o2 -w -fmax-errors=3 -std=c11 $1 -lm -o $OUTPUT_FILE
+fi
 
 if ! [ -e $OUTPUT_DIR ];
 then

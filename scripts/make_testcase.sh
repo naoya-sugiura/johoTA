@@ -36,7 +36,7 @@ if ! [ -e $BIN_FILE ]; then
 fi
 
 ARG_IN=${@#* }
-echo "===== input ====="
+echo "===== input  ====="
 echo "$ARG_IN"
 echo "$ARG_IN" >> $TEST_CASE_IN
 ./$BIN_FILE < $TEST_CASE_IN >> $TEST_CASE_OUT
