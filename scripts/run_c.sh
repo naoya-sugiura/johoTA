@@ -1,17 +1,13 @@
 #! /bin/sh
 
-if [ $# = 0 ]; then
+if [ $# -le 0 ]; then
     echo "too little arguments !"
-    echo "argument must be 1"
-    exit 1
-elif [ $# -ne 1 ]; then
-    echo "too many arguments !"
-    echo "argument must be 1"
+    echo "argument must be grater than 1"
     exit 1
 fi
 
 if ! [ `echo $PWD | grep "src"` ]; then
-    echo "please compile in src dir"
+    echo "please running in src dir"
     exit 1
 fi
 
@@ -22,4 +18,6 @@ if ! [ -e $OUTPUT_FILE ]; then
     echo "\"$OUTPUT_FILE\" no such file or directory !"
     exit 1
 fi
-./$OUTPUT_FILE
+
+ARG_IN=${@#* }
+./$OUTPUT_FILE $ARG_IN
