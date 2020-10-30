@@ -11,11 +11,16 @@ if ! [ `echo $PWD | grep "src"` ]; then
     exit 1
 fi
 
-cd $PWD/..
-TEST_CASE_DIR="test_case/${1%.*}"
+cd $PWD
+TEST_CASE_DIR="../test_case"
 if ! [ -e $TEST_CASE_DIR ]; then
     mkdir $TEST_CASE_DIR
-    echo "setup test case dir"
+    echo "setup testcase dir"
+fi
+TEST_CASE_DIR="../test_case/${1%.*}"
+if ! [ -e $TEST_CASE_DIR ]; then
+    mkdir $TEST_CASE_DIR
+    echo "setup /testcase/${1%.*}"
 fi
 
 TEST_CASE_IN=0
@@ -29,7 +34,7 @@ done
 TEST_CASE_OUT=${TEST_CASE_DIR}/$(($TEST_CASE_IN+1)).out
 TEST_CASE_IN=${TEST_CASE_DIR}/$(($TEST_CASE_IN+1)).in
 
-BIN_FILE=bin/${1%.*}.out
+BIN_FILE=../bin/${1%.*}.out
 if ! [ -e $BIN_FILE ]; then
     echo "\"$BIN_FILE\" no such file or directory !"
     exit 1

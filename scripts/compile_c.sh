@@ -25,9 +25,9 @@ INCLUDE_DIR=$PWD/../include
 OUTPUT_DIR=$PWD/../bin
 OUTPUT_FILE=${1%.*}.out
 if [ -e $INCLUDE_DIR ]; then
-    gcc -DONLINE_JUDGE -o2 -w -fmax-errors=3 -std=c11 $1 -lm -o $OUTPUT_FILE -I $INCLUDE_DIR
+    gcc -DONLINE_JUDGE -O2 -w -fmax-errors=3 -std=c11 $1 -lm -o $OUTPUT_FILE -I $INCLUDE_DIR
 else
-    gcc -DONLINE_JUDGE -o2 -w -fmax-errors=3 -std=c11 $1 -lm -o $OUTPUT_FILE
+    gcc -DONLINE_JUDGE -O2 -w -fmax-errors=3 -std=c11 $1 -lm -o $OUTPUT_FILE
 fi
 
 if ! [ -e $OUTPUT_DIR ];

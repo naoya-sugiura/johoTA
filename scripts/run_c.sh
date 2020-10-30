@@ -11,8 +11,8 @@ if ! [ `echo $PWD | grep "src"` ]; then
     exit 1
 fi
 
-cd $PWD/../bin
-OUTPUT_FILE=${1%.*}.out
+cd $PWD
+OUTPUT_FILE=../bin/${1%.*}.out
 
 if ! [ -e $OUTPUT_FILE ]; then
     echo "\"$OUTPUT_FILE\" no such file or directory !"

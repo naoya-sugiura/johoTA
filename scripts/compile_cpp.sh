@@ -2,11 +2,7 @@
 
 if [ $# = 0 ]; then
     echo "too little arguments !"
-    echo "argument must be 1"
-    exit 1
-elif [ $# -ne 1 ]; then
-    echo "too many arguments !"
-    echo "argument must be 1"
+    echo "argument must be greater than 1"
     exit 1
 fi
 
@@ -24,10 +20,19 @@ fi
 INCLUDE_DIR=$PWD/../include
 OUTPUT_DIR=$PWD/../bin
 OUTPUT_FILE=${1%.*}.out
+THREAD=""
+for x in "$@"
+do
+    if [ $x = "--thread" ]; then
+        THREAD="-pthread"
+        break
+    fi
+done
+
 if [ -e $INCLUDE_DIR ]; then
-    g++ -DONLINE_JUDGE -o2 -w -fmax-errors=3 -std=c++14 $1 -lm -o $OUTPUT_FILE -I $INCLUDE_DIR
+    g++ -DONLINE_JUDGE -O2 -w -fmax-errors=3 -std=c++14 $1 -lm -o $OUTPUT_FILE -I $INCLUDE_DIR $THREAD
 else
-    g++ -DONLINE_JUDGE -o2 -w -fmax-errors=3 -std=c++14 $1 -lm -o $OUTPUT_FILE
+    g++ -DONLINE_JUDGE -O2 -w -fmax-errors=3 -std=c++14 $1 -lm -o $OUTPUT_FILE $THREAD
 fi
 
 if ! [ -e $OUTPUT_DIR ];
