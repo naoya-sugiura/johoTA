@@ -12,6 +12,7 @@ fi
 
 if ! [ `echo $PWD | grep "src"` ]; then
     echo "please compile in src dir"
+    exit 1
 fi
 
 cd $PWD
